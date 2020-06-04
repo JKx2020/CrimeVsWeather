@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rotten Apples</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="Weather_app/style.css"> -->
+
+
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/835da98689.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <!-- API key -->
+  <script type="text/javascript" src="/js/config.js"></script>
+
+  <!-- header and navbar container -->
+  <div class="container">
+
+      <!-- create the navbar class -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+
+          <!-- add title to the left on the bar -->
+          <a class="navbar-brand" href=""><i class="fas fa-gavel"></i></i> CRIME & WEATHER</a>
+
+          <!--drop down toggle button-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+              
+          
+                <!--add nav bar drop-down -->
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types of Crime<span class="caret"></span></a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Burglary"> Burglary</a>
+
+                  <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Larceny">Larceny</a>
+
+                  <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Robbery">Robbery</a>
+
+                  <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Assault#Aggravated_assault">Aggravated Assault</a>
+
+                  <a class="dropdown-item" href="https://en.wikipedia.org/wiki/Homicide">Homicide</a>
+
+                </div>             
+              </li>
+
+              <!-- adds links to the bar -->
+
+              <!-- <li class="nav-item mr-auto">
+                <a class="nav-link mr-auto" href="http://127.0.0.1:5500/data.html"></a>
+              </li> -->
+              <!-- <li class="nav-item mr-auto">
+                  <a class="nav-link mr-auto" href="http://127.0.0.1:5500/compares.html">Heatmap</a>
+                </li> -->
+
+            </ul>
+
+          </div>
+      </nav>
+
+      <!-- Webpage Header -->
+      <div class="header">
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center">
+              <h1>Crime & Weather.</h1>
+              <hr>
+              <h4>Does bad weather bring out the bad apples? We investigate here.</h4> 
+              <hr>
+            </div>
+          </div>    
+      </div>
+    </div>
+
+    <!-- Container to Hold our charts & content-->
+    <div class="container">
+
+      <!-- Describe our project -->
+      <div class="row">
+        <div class="col-lg-12">
+          <p>This project is analyzing the correlation between crime and weather in Atlanta. We hypothesize that weather conditions impact the level of crime. We suggest that the impact weather has on crime is not consistent amongst all types of crime, with some crime increasing when weather conditions encourages individuals to stay home(domestic violence) and other crime decreasing when weather conditions encourage individuals to leave the home (home burglary).</p>
+        </div>
+
+      </div>
+      <br>
+      <br>
+      
+
+
+      <div class="row">
+        <div class="col-md-6 col-sm-3">
+         
+          <h3>When looking at all types of crime committed in Atlanta over the span of 2009-2018, we found the below to be true:</h3>
+          <br>
+
+          <h6>RESULTS: There is a correlation between weather and crime</h6>
+          <p> When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, we estimate crimes to increase by .82. Likewise, for every additional percent of rain there is a day, we estimate crimes to increase by 5.62 crimes. Both variables are highly significant, and our model has an adjusted R-square of .96. The closer R-square is to 1, the more of the relationship our model explains, this model explains a large portion of the relationship of crime to weather</p>
+
+          <p>Using our model, we are able to forecast the number of crimes that will be committed in Atlanta based on temperature and rain predicted.</p>
+        </div>
+
+        <!-- Crime Forecast -->
+        <div class="col-md-6 col-sm-3">
+          <div class="card">
+              <div class="location">
+                <h1 class="location-timezone" style = text-align:center>
+                    ATLANTA
+                </h1>
+                
+            </div>
+
+            <img src="" alt="Loading...." class='icon-weather' >
+
+            <div class="temperature">
+                <div class="degree-section">    
+                    <h2 class="temperature-degree">Loading....</h2>
+
+                </div>
+                <div class="temperature-description">Loading....</div>
+            </div>
+
+            <br>
+            <div class = "crime_forecast">
+                <h2>Forecasted Crime:</h2>
+                <h4 class = "fcast" style = text-align:center></h4>
+              </div>
+          </div>
+         </div>
+
+      </div>
+
+      <br>
+        <!-- Crime Counter -->
+        <div class="row">
+        <div class="col-md-6 col-sm-3">
+          <br><br><br><br>
+          <h2>2020 Crime Counter</h2>
+          <p>Our crime counter looks at all reported crime in the city of Atlanta in 2020, as of the latest data provided by the city of Atlanta.</p>
+         </div>
+        <div class="col-md-6 col-sm-3">
+          <div class="card">
+            <p><i class="fas fa-exclamation-circle"></i></p>
+            <h4>Total Atlanta Crimes in 2020:</h3>
+            <p id="crimeCount"></p>
+            <p id="asOfDate"></p>
+          </div>
+         </div>
+        </div>
+      <br>
+      <!-- Birthday Weeks -->
+      <hr>
+      <div class="row">
+        <div class="col-md-12 col-md-6">
+          <h2>Predicted Crime vs Actual Crime</h2>
+          <p>Choose a date from the dropdown below to see a week of actual crimes commited vs forecasted crimes based on our model.</p>
+          <div class="well">
+            <h5>Please select a date from the drop down:</h5>
+            <select id="selBirthday"></select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12 col-md-6">
+          <div id="birthday"></div>       
+        </div>
+      </div>
+
+      <br>
+      <hr>
+
+      <!-- crime markermap -->
+      <div class="row">
+        <div class="col-md-12 col-md-6">
+          <h2>Weather vs Crime on a Specific Day</h2>
+          <p>To see actual locations of specific crimes committed in Atlanta on a day 2020, choose a date from the dropdown. An icon will appear in the top right of the graph to indicate if it was more sunny or more rainy on that day.</p>
+          <div class="well">
+            <h5>Select a Date:</h5>
+            <select id="selDate" onchange="buildMap(this.value)"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div id="map"></div>
+        </div>
+      </div>
+
+      <hr>
+
+
+      <!-- Weather vs Crime over Time -->
+
+        <div class="row">
+          <div class="col-md-12">
+          <h2>Weather vs Crime Over Time</h2>
+          <br>
+          <p>The graph below shows crimes committed vs a specific weather metric over the span of 10 years. Choose a metric from the Crime and Weather dropdowns to see the correlation over time of weather and crime</p>
+          <br>
+
+          </div>
+
+        </div>
+        <div class="row" id="option_select">
+            <div class="col-md-2">
+                <div class="well">
+                    <h5>Weather Metric:</h5>
+                    <select id="selDatasetOne">
+                        <option value="real_feel">Real Feel</option>
+                        <option value="temp">Temperature</option>
+                        <option value="rain_percentage">Rain Percentage</option>
+                        <option value="cloud_percentage" selected>Cloud Percentage</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+                <div class="well">
+                    <h5>Crime Metric:</h5>
+                    <select id="selDatasetTwo">
+                        <option value="personal_crime">Personal Crime</option>
+                        <option value="all_crime">All Crime</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div id="submit_botton">
+                    <button type="button" onclick="buildChart()">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="line_chart"></div>
+            </div>
+        </div>
+         
+    <div id="plot"></div>
+
+    <br>  
+    <!-- Types of Crime Overview -->
+     <hr>
+     <div class="row">
+       <div class="col-md-12 col-md-6">
+         <h2>Creation of the Crime Forecast Model and Overview of Types of Crime in Analysis</h2>
+         <p>The Atlanta Police Department collects and distributes data on several different kinds of crime that is recorded on a weekly basis. For the purposes of this exercise, we have simplified the data into 5 separate categories of crime, though there is a fair amount of overlap which may occur for these different types of crime. Below is a high level overview of the different types of crime which are included in this analysis, as well as some background on the regressions used to calculate the crime forecast.</p>
+       
+         <h3>Summary</h3>
+         <ul>
+           <li>There are 5 types of crime included in our "Total Crime" regressions.</li>
+           <li>The formula used to predict the total number of crimes each day is All Crimes = (0.82 * Temperature) + (5.62 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of crimes that day increases by 0.82.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of crimes that occur that day increases by 5.62.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.96. The closer this number is to 1, the more of the relationship our model explains, and this model explains a large portion of the relationship of crime to weather.</li>
+         </ul>
+       
+         <h3>Larceny</h3>
+         <ul>
+           <li>Larceny, which is often called theft or petty theft, is the taking of another person’s possession without their consent, with the intent to never return the possession. A common example of larceny include shoplifting. This can also include the theft of money or other physical goods.</li>
+           <li>The formula used to predict the total number of larcenies each day is Larceny = (0.51 * Temperature) + (4.27 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of larcenies that day increases by 0.51.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of larcenies that occur that day increases by 4.27.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.94. Larceny accounts for over half of all crimes, so it is expected to have similar outcomes to the aggregated, all crime regression.</li>
+         </ul>
+
+         <h3>Robbery</h3>
+         <ul>
+           <li>Robbery is another form of theft, but it involves taking an item from an individual without their consent while using force or the threat of force. While robbery is a violent crime, it does not necessarily include physical harm, as it can also include taking property under the threat of violence. An example of robbery would include robbing a store at gunpoint.</li>
+           <li>The formula used to predict the total number of robberies each day is Robbery = (0.38 * Temperature) + (0.69 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of robberies that day increases by 0.38.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of robberies that occur that day increases by 0.69.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.84. While our coefficients are significant, their values are much smaller than that of our other models. This suggests that while there is a positive relationship with temperature and robberies, there may be other factors that influence robberies aside from the weather.</li>
+         </ul>
+
+         <h3>Burglary</h3>
+         <ul>
+           <li>Burlary is another crime which involves theft, but in order to commit a burglary you must enter a dwelling or a structure (or demonstrate the intention to enter a dwelling or structure) with the intention of committing the crime within that structure. A common example of a burglary would be breaking into a person’s home or apartment.</li>
+           <li>The formula used to predict the total number of burglaries each day is Burglary = (0.093 * Temperature) + (0.585 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of burglaries that day increases by 0.093.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of burglaries that occur that day increases by 0.585.</li>
+           <li>While temperature is significant, the percentage of rain is not. Our model has an adjusted R-square of 0.90.</li>
+         </ul>
+       
+         <h3>Auto Theft</h3>
+         <ul>
+           <li>Auto theft includes the unauthorized taking of another person’s car with the intent to permanently deprive the owner of the use of their vehicle.</li>
+           <li>The formula used to predict the total number of auto thefts each day is Auto Theft = (0.01 * Temperature) + (1.48 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of auto thefts that day increases by 0.01.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of auto thefts that occur that day increases by 1.48.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.88.</li>
+         </ul>
+
+         <h3>Homicide</h3>
+         <ul>
+           <li>Homicide, commonly referred to as murder, involves the deliberate and unlawful killing of one person by another. Homicides can fall into many legal categories, and can also include justfiable homicide and manslaughter.</li>
+           <li>The formula used to predict the total number of homicides each day is Homicide = (0.013 * Temperature) + (0.18 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of homicides that day increases by 0.013.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of homicides that occur that day increases by 0.18.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.88. Like our robberies model, our explanatory variables are significant but close to 0. This suggests that there may be more factors aside from temperature and percentage of rain that explain the levels of robberies and homicide in Atlanta.</li>
+         </ul>
+
+         <h3>Aggravated Assault</h3>
+         <ul>
+           <li>Aggravated assault is an attempt to cause serious bodily harm to an individual with disregard for human life. These crimes often involve the use of a weapon, or significant malicious intent.</li>
+           <li>The formula used to predict the total number of aggravated assaults each day is Aggravated Assault = (0.07 * Temperature) - (0.47 * percentage of precipitation on given day).</li>
+           <li>When looking at the historical crime and weather data from 2009 – 2018, we find that on average, if temperature increases by 1 degree, the total number of aggravated assaults that day increases by 0.07.</li>
+           <li>Likewise, for every additional percent of rain there is a day, the number of aggravated assaults that occur that day decreases by 0.47.</li>
+           <li>Both variables are highly significant, and our model has an adjusted R-square of 0.84. Aggravated assault is the only metric that shows a negative relationship with precipitation, with fewer assaults occurring on more rainy days.</li>
+         </ul>
+
+         <br>  
+         <!-- Complications -->
+          <hr>
+          <div class="row">
+            <div class="col-md-12 col-md-6">
+              <h2>Project Architecture</h2>
+              <p>The diagram below gives a high level overview of the data sources we used, and how we connected them together within the project flow. The application is completely hosted on the cloud, connecting the web server (nginx), API Server (Flask), Postgres DB, and Mongo DB. Apart from real-time updating weather data, we also used large historical databases for crime data (349,030 entries) and weather (98,592 entries), which we loaded into Postgres DB. We then loaded the processed data into Mongo DB to use for the visualizations above.</p>
+              <br>
+                <img src="images/TheRottenApples.png" alt="TheRottenApples" width="1160" height="906">
+              <br>
+            </div>
+          </div>
+          
+          <hr>
+          <br>
+          <div class="row">
+            <div class="col-md-12 col-md-6">
+              <h2>Project Process and Complications Along the Way</h2>
+              <p>Initially, our team was excited to work with data related to movie going patrons, and how much more likely people were to go to movies based on the weather. Does a rainy day typically increase the relative spending at local theaters? Unfortunately, due to COVID-19, movie-going data has experienced some significant variability of late. This led to the natural transition of our team from “The Rotten Tomatoes” to “The Rotten Apples”, showing how weather impacts crime rates.</p>
+              <ul>
+                <li>When looking at the forecasted data for Atlanta’s weather, if there was a 0 percent chance of rain, it didn’t include any data at all. We had to create a conditional argument to show if there was going to be rain that day or not by converting it to value of 0 or 1 and then took the average of the 3-hour intervals for that day to determine the percent chance of rain.</li>
+                <li>We encountered a security issue that we solved using flask_CORS.</li>
+                <li>GIT hub issue with merge conflicts.</li>
+                <li>Due to the large size of our files, we used AWS S3 to store data.</li>
+                <li>We encountered some issues storing data Pandas dataframe date field in Mongo. The date went into the systems Unix date-time #.</li>
+                <li>Since we had multiple API calls occuring, we had issues with D3 JSON accessing multiple API calls. We were able to coordinate between calls.</li>
+                <li>Database size issue with the Trial DB only allowing a limited number of entries. We fixed the issues in two ways. The first way was that we purchased a heroku license to expand the count of records for Postgres database. For Mongo DB, we reduced the number of records we were using.</li>
+                <li>We had an issue with index.html in the wrong folder.  When we moved it around things broke and we had to fix all the pointers.</li>
+                <li>Issue with github page. API calls would not work since we did not upload the API Keys. Therefore, we had to launch a nginx web server in AWS for our web site.</li>
+              </ul>
+              <br>
+                <img src="images/FinalTeamLogosmall.PNG" alt="TheRottenApples">
+              <br>
+            </div>
+          </div>
+
+          
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- D3 JavaScript -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Our JavaScript-->
+    <!-- Birthdayweeks -->
+    <script type="text/javascript" src="/js/candice.js"></script>
+
+    <!-- Crimemarkers -->
+    <script type="text/javascript" src="/js/crimemarkers_pullsLocalCSV V2.js"></script>
+
+
+    <!-- Crime Forecast -->
+    <script type="text/javascript" src="/Weather_app/app.js"></script>
+
+    <!-- Crime vs Weather over time -->
+    <script type="text/javascript" src="/js/ethan3.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+          
+
+</body>
+
+</html>
