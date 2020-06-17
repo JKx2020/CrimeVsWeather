@@ -1,3 +1,7 @@
+This was a group project with five other people. I was responsible for the creation and set-up of the entire webpage. I created and maintained the HTML, CSS, and organization of the data. I also created the Crime Marker leaflet map. 
+
+The languages I used in this project were: HTML, CSS, Bootstrap, JavaScript, Leaflet, D3, Python, Pandas, Flask
+
 <h1 align = "center">THE Rotten Apples</h1>
 
 
