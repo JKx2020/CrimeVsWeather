@@ -1,3 +1,0 @@
-var API_KEY = "pk.eyJ1Ijoia2FtcHJhdDIiLCJhIjoiY2s4amM3YnBmMGZjODNmbXZxMHRnZDI0MSJ9.Zm94QCrl8KBL1xzGcyoQzg";
-
-var API_WEATHER = "2e8ff7fba78f9ad39fb1db7fec41ea07"
